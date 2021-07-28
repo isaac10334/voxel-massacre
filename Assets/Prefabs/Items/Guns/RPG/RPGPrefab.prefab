@@ -1,0 +1,1269 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1792308168868963907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4226380624331131789}
+  - component: {fileID: 6988197487470438569}
+  m_Layer: 7
+  m_Name: RPGPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4226380624331131789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792308168868963907}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3340417390024267637}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6988197487470438569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792308168868963907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4a718f140294633884839cce272667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Static: 0
+  Occludee: 0
+  Lod1: 100
+  Lod2: 0
+  LodMargin: 0
+  LodOnly: 0
+--- !u!1 &7840571710711786116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3340417390024267637}
+  m_Layer: 0
+  m_Name: Lod_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3340417390024267637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7840571710711786116}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0.98, y: -0.59, z: 0.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3670067357195096091}
+  m_Father: {fileID: 4226380624331131789}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!1 &8730848407326284136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3670067357195096091}
+  - component: {fileID: 4436365233851768754}
+  - component: {fileID: 3814689258774339707}
+  - component: {fileID: 6008178917401727336}
+  - component: {fileID: 2552720708336995142}
+  - component: {fileID: 6653443876072042906}
+  - component: {fileID: 8584834906714300632}
+  m_Layer: 7
+  m_Name: GeneratedVoxelContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3670067357195096091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730848407326284136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.4000001, y: 0, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3340417390024267637}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4436365233851768754
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730848407326284136}
+  m_Mesh: {fileID: 4300000, guid: b26f38b0a3260984899a43c672087be5, type: 2}
+--- !u!23 &3814689258774339707
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730848407326284136}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: dc35c3e21db620d4fb45566a294a4262, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6008178917401727336
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730848407326284136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b26f38b0a3260984899a43c672087be5, type: 2}
+--- !u!114 &2552720708336995142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730848407326284136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6d75b01e82be64a94aa07d4f54b132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genericVoxelsMaterial: {fileID: 0}
+  transparentMaterial: {fileID: 0}
+  resolution: 0.1
+  allowUserDestruction: 0
+  meshFilter: {fileID: 4436365233851768754}
+  rb: {fileID: 0}
+  dimensions: {x: 43, y: 10, z: 5}
+  createOnAwakeFromData: 0
+  meshCollider: {fileID: 6008178917401727336}
+  nonConvexMeshCollider: {fileID: 6653443876072042906}
+  physicsEnabled: 0
+  objectType: 1
+  colorsCount: 15
+  materialsCount: 1
+  voxels: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000404050606060000000007070000000000000000000000000000000000000000000000000000000400000404040506060606000000070700000000000000000000000000000000000000000000000000000004000000040405060606000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000404050606000000000007000000000000000000000000000000000000000000000000000000000400040404040506060406000000080707070101090101090101010207070707070707070a0a0a0b0707070404040404040506060404040606080707070d0e090d0d090d0d0d0d0b0707070a0a0a0707070a0b070707040404040404050606040600000007070000000000000000000000000000000000000a0000000000000000040000000404050606000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001020000000000000000000000000000000000000000000000000000000000000000000001010200000001020200000000000000000000000000000000000000000000000000000000000000000000010102000000010202000000000000000000000000000000000000000000000000000000000000000000000101020000000102030303000000000000000000000000000000000000000707000000000000000000000001020200000003030300000300000000000000000000000000000000000008080800000000000101070101010208080808080808080808080708080000000004040506060600000000080707070101070101070101010207070707070707070a0a0a0b07070c04000004040405060606060000000807070b0d0e070d0d070d0d0d0d0b0707070a0a0a0707070a0b07070c0400000004040506060600000000080b0b0e0e0d0e0d0d0d0e0e0e0e0e0b0b0b07070a070707000007000b000000000000000000000000000007070000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000080707070101090101090101010207070707070707070a0a0a0b0707070000000000000000000000000000080707070d0e090d0d090d0d0d0d0b0707070a0a0a0707070a0b070707000000000000000000000000000007070000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007070000000000000000000000000000000000000000000000000000000000000000000000000000000000070700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  _voxelsIsCompressed: 0
+  colors:
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 4278203238
+  - serializedVersion: 2
+    rgba: 4278204271
+  - serializedVersion: 2
+    rgba: 4279308561
+  - serializedVersion: 2
+    rgba: 4279838484
+  - serializedVersion: 2
+    rgba: 4279640594
+  - serializedVersion: 2
+    rgba: 4279772435
+  - serializedVersion: 2
+    rgba: 4281545523
+  - serializedVersion: 2
+    rgba: 4280427042
+  - serializedVersion: 2
+    rgba: 4278196530
+  - serializedVersion: 2
+    rgba: 4281677109
+  - serializedVersion: 2
+    rgba: 4282664004
+  - serializedVersion: 2
+    rgba: 4294914969
+  - serializedVersion: 2
+    rgba: 4281558681
+  - serializedVersion: 2
+    rgba: 4281228685
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 0
+  materials:
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  - materialId: 0
+    advancedMaterialDataId: 0
+  indexInObject: 0
+  logUpdateRenderPeformance: 0
+  materialsDatabase: {fileID: 0}
+  totalAmountOfNonAirVoxels: 363
+--- !u!114 &6653443876072042906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730848407326284136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2250bd669aa45674f9e4c4fefd5b359b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vc: {fileID: 2552720708336995142}
+  profile: 0
+  shouldMerge: 1
+  createColliderChildGameObject: 1
+  boxesPerEdge: 20
+--- !u!114 &8584834906714300632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730848407326284136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e038bf700cfa444fb16c6ef963be9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

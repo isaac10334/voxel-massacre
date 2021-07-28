@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 9d6d75b01e82be64a94aa07d4f54b132
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - genericVoxelsMaterial: {fileID: 2100000, guid: dc35c3e21db620d4fb45566a294a4262,
+      type: 2}
+  - transparentMaterial: {fileID: 2100000, guid: 123fbe69c7a724829a3602c0191e4004,
+      type: 2}
+  - meshFilter: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - meshCollider: {instanceID: 0}
+  - nonConvexMeshCollider: {instanceID: 0}
+  - materialsDatabase: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
