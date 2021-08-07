@@ -8,18 +8,20 @@ using Mirror;
 public class Gun : NetworkBehaviour
 {
 
+    public Transform rightHandGrip;
+    public Transform leftHandGrip;
+
     [SerializeField] private float projectileForce = 40f;
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private Transform barrel;
-    [SerializeField] private string ammoItem;
     [SerializeField] private Vector3 aimDownSightPos;
     [SerializeField] private Vector3 aimDownSightRot;
     [SerializeField] private float shootRate;
     [SerializeField] private float tweenDuration;
     [SerializeField] private bool fullyAutomatic;
-    [SerializeField] private bool requiresAmmo;
     [SerializeField] private GameObject projectile;
     [SerializeField] private AudioClip gunshotSound;
+    [SerializeField] private AudioClip outOfAmmoSound;
     [SerializeField] private Transform gunHolder;
     private float timer = 0f;
     private AudioSource audioSource;
@@ -38,6 +40,14 @@ public class Gun : NetworkBehaviour
         if(!hasAuthority) return;
 
         if(!PlayerInput.InputEnabled) return;
+
+        Camera cam = NetworkClient.localPlayer.GetComponent<PlayerMovement>().cam;
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo))
+        {
+            Vector3 direction = hitInfo.point - barrel.transform.position;
+            barrel.transform.rotation = Quaternion.Euler(0, 90, 0) * Quaternion.LookRotation(direction);
+        }
 
         if(Input.GetKeyDown(KeyCode.R)) TryReload();
 
@@ -89,13 +99,12 @@ public class Gun : NetworkBehaviour
 
     private void Fire()
     {
-        // Check the local, untrustworthy version of the inventory just for latency reasons and nothing else.
-        if(Player.Instance.ContainsItem(ammoItem, 1) || !requiresAmmo)
+        if(Player.Instance.EnoughAmmo())
         {
             audioSource.PlayOneShot(gunshotSound);
             particleSystem.Play();
             gunHolder.DOPunchRotation(new Vector3(1, 0, -5), 0.1f, 10, 1);
-            
+
             CmdFire();
         }
         else
@@ -106,26 +115,23 @@ public class Gun : NetworkBehaviour
 
     private void OnOutOfAmmo()
     {
-        // play a click
-        throw new System.NotImplementedException();
+        audioSource.PlayOneShot(outOfAmmoSound);
     }
 
     private void TryReload()
     {
-        throw new System.NotImplementedException();    
+        Player.Instance.CmdReload();
     }
-
+    
     [Command]
     private void CmdFire(NetworkConnectionToClient sender = null)
     {
         Player player = sender.identity.GetComponent<Player>();
 
         // the rest of this method requires ammo, so if we can't get it from the player return
-        if(requiresAmmo)
-        {
-            if(!player.DestroyItem(ammoItem)) return;
-        }
-        
+        if(!player.EnoughAmmo()) return;
+        player.CmdUseAmmo();
+
         ClientFire();
 
         GameObject newObj = Instantiate(projectile);

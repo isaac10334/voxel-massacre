@@ -14,6 +14,15 @@ public class ClientStartUp : MonoBehaviour
 	public ServerStartUp serverStartUp;
 	public NetworkManager networkManager;
 	public TelepathyTransport telepathyTransport;
+
+	private void Start()
+	{
+		if(Application.isEditor || Debug.isDebugBuild) return;
+
+		// automatically log in the client as a guest
+		OnLoginUserButtonClick();
+	}
+
 	public void OnLoginUserButtonClick()
 	{
 		if (configuration.buildType == BuildType.REMOTE_CLIENT)

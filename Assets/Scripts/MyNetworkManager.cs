@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System;
+using PlayFab;
 
 public struct CreatePlayerMessage : NetworkMessage
 {
@@ -51,10 +52,19 @@ public class MyNetworkManager : NetworkManager
 {
     // [SerializeField] private ServerStartUp serverStartUp;
     // [SerializeField] private Transform spawnPosOne;
-    // [SerializeField] private Transform spawnPosTwo;
+    [SerializeField] private Configuration configuration;
 
-    private List<UnityNetworkConnection> _connections = new List<UnityNetworkConnection>();
-    
+    public override void Awake()
+    {
+        base.Awake();
+
+        if(Debug.isDebugBuild || Application.isEditor)
+        {
+            gameObject.AddComponent<NetworkManagerHUD>();
+            return;
+        }
+    }
+
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
         base.OnClientSceneChanged(conn);
@@ -117,7 +127,6 @@ public class MyNetworkManager : NetworkManager
             return;
         }
     }
-
     private Team FindTeam()
     {
         int reds = 0;
@@ -162,46 +171,16 @@ public class MyNetworkManager : NetworkManager
         UIThings.Instance.OpenMenuAsMainMenu();
     }
 
-    public override void OnServerConnect(NetworkConnection conn)
-    {
-        // var conn = _connections.Find(c => c.ConnectionId == netMsg.conn.connectionId);
-        // if (conn == null)
-        // {
-        //     _connections.Add(new UnityNetworkConnection()
-        //     {
-        //         Connection = netMsg.conn,
-        //         ConnectionId = netMsg.conn.connectionId,
-        //         LobbyId = PlayFabMultiplayerAgentAPI.SessionConfig.SessionId
-        //     });
-        // }
-    }
-
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         base.OnServerDisconnect(conn);
-        
-        // var conn = _connections.Find(c => c.ConnectionId == netMsg.conn.connectionId);
-        // if (conn != null)
-        // {
-        //     if (!string.IsNullOrEmpty(conn.PlayFabId))
-        //     {
-        //         OnPlayerRemoved.Invoke(conn.PlayFabId);
-        //     }
-        //     _connections.Remove(conn);
-        // }
-    }
 
-    // private void OnReceiveAuthenticate(NetworkMessage netMsg)
-    // {
-    // 	var conn = _connections.Find(c => c.ConnectionId == netMsg.conn.connectionId);
-    // 	if (conn != null)
-    // 	{
-    // 		var message = netMsg.ReadMessage<ReceiveAuthenticateMessage>();
-    // 		conn.PlayFabId = message.PlayFabId;
-    // 		conn.IsAuthenticated = true;
-    // 		OnPlayerAdded.Invoke(message.PlayFabId);
-    // 	}
-    // }
+        if(NetworkServer.connections.Count == 0)
+        {
+            ShutDown();
+        }
+
+    }
 
     public void ShutDown()
     {

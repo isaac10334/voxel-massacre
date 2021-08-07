@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Mirror;
+using UnityEngine.Animations.Rigging;
+
 public class Player : NetworkBehaviour
 {
     [SyncVar]
@@ -21,6 +23,8 @@ public class Player : NetworkBehaviour
     public int raycastRange;
     public GameObject enemyStuff;
     public TMP_Text playerText;
+    [SerializeField] private TwoBoneIKConstraint rightHandConstraint;
+    [SerializeField] private TwoBoneIKConstraint leftHandConstraint;
     [SerializeField] private float onDamageShakeAmount = 0.5f;
     [SerializeField] private float onDamageShakeDuration = 0.25f;
     [SerializeField] private ParticleSystem blood;
@@ -33,7 +37,7 @@ public class Player : NetworkBehaviour
     private Ray _ray;
     private RaycastHit _hit;
     private PlayerMovement _playerMovement;
-    private int _currentlyEquippedSlot;
+    [SyncVar] private int _currentlyEquippedSlot;
 
     private void Awake()
     {
@@ -354,14 +358,11 @@ public class Player : NetworkBehaviour
             if(item.slot == itemSlot)
             {
                 _currentlyEquippedSlot = itemSlot;
-
                 GameObject itemPrefab = itemsDatabase.GetItemByName(item.name).prefab;
+                
+                GameObject newItem = Instantiate(itemPrefab, hand);
 
-                GameObject newItem = Instantiate(itemPrefab);
-
-                newItem.transform.parent = hand;
-                newItem.transform.position = hand.position;
-                newItem.transform.rotation = hand.rotation;
+                newItem.transform.localPosition = Vector3.zero;
                 
                 if(itemsDatabase.GetItemByName(item.name).itemInfo)
                 {
@@ -369,13 +370,37 @@ public class Player : NetworkBehaviour
                     newItem.GetComponent<ItemInfo>().slot = itemSlot;
                 }
 
+                Gun gun = newItem.GetComponentInChildren<Gun>();
+
+                if(gun)
+                {
+                    // send up hand IK - hands will go to guns.
+                    leftHandConstraint.data.target = gun.leftHandGrip;
+                    rightHandConstraint.data.target = gun.rightHandGrip;
+                }
+
                 NetworkServer.Spawn(newItem, gameObject);
+
+                TargetUpdateAmmo(item);
 
                 // newItem.GetComponent<NetworkIdentity>().AssignClientAuthority
                 ClientEquip(newItem);
 
                 return;
             }
+        }
+    }
+
+    [TargetRpc]
+    private void TargetUpdateAmmo(InventoryItem item)
+    {
+        if(item.itemType == ItemType.Gun)
+        {
+            UIThings.Instance.reloadUI.EnableReloadUI(item);
+        }
+        else
+        {
+            UIThings.Instance.reloadUI.DisableReloadUI();
         }
     }
     
@@ -393,14 +418,102 @@ public class Player : NetworkBehaviour
     {
         if(!isServer) return;
 
+        AddItem(itemsDatabase.GetItemByName(itemName));
+    }
+
+    public void AddItem(Item item)
+    {
+        if(!isServer) return;
+
         if(inventory.Count > maxInventorySize) return;
 
-        InventoryItem newItem = new InventoryItem{ name = itemName, slot = inventory.Count, };
+        InventoryItem newItem = new InventoryItem()
+        { 
+            name = item.name,
+            slot = inventory.Count,
+            currentClipAmmo = item.clipSize,
+            restOfAmmo = item.ammoAmount,
+            itemType = item.itemType
+        };
 
         inventory.Add(newItem);
 
         TargetAddItem(newItem);
     }
+
+    #region Reloading
+    public void CmdReload()
+    {
+        for(int i = 0; i < inventory.Count; i++)
+        {
+            if(inventory[i].slot == _currentlyEquippedSlot)
+            {
+                InventoryItem item = inventory[i];
+                
+                Item referenceItem = itemsDatabase.GetItemByName(item.name);
+
+                if(item.currentClipAmmo == 0)
+                {
+                    if(item.restOfAmmo - referenceItem.clipSize < 0)
+                    {
+                        item.currentClipAmmo = item.restOfAmmo;
+                        item.restOfAmmo = 0;
+                    }
+                    else
+                    {
+                        item.currentClipAmmo = referenceItem.clipSize;
+                        item.restOfAmmo -= referenceItem.clipSize;
+                    }
+                }
+                else
+                {
+                    int difference = referenceItem.clipSize % item.currentClipAmmo;
+                    item.currentClipAmmo += difference;
+                    item.restOfAmmo -= difference;
+                }
+                // e.g. we have 24, we want thirty. 30 % 24 
+
+                inventory[i] = item;
+
+                TargetUpdateAmmo(item);
+
+                return;
+            }
+        }
+    }
+    // Can be used on the client or server, but important not to trust the result on the client etc
+    public bool EnoughAmmo()
+    {
+        foreach(InventoryItem item in inventory)
+        {
+            if(item.slot == _currentlyEquippedSlot)
+            {
+                return item.currentClipAmmo > 0;
+            }
+        }
+
+        return false;
+    }
+
+    public void CmdUseAmmo()
+    {
+        for(int i = 0; i < inventory.Count; i++)
+        {
+            if(inventory[i].slot == _currentlyEquippedSlot)
+            {
+                InventoryItem item = inventory[i];
+
+                item.currentClipAmmo -= 1;
+                inventory[i] = item;
+                
+                TargetUpdateAmmo(item);
+
+                return;
+            }
+        }
+    }
+
+    #endregion
 
     [TargetRpc]
     private void TargetAddItem(InventoryItem item)

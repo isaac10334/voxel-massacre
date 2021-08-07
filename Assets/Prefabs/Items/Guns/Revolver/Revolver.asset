@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 3}
   sprite: {fileID: 21300000, guid: 960589120cbc2e8479572dc5d5ee03e3, type: 3}
   itemInfo: 0
+  clipSize: 6
+  ammoAmount: 120

@@ -2,16 +2,13 @@
 using UnityEngine;
 using PlayFab;
 using System;
-using PlayFab.Networking;
 using System.Collections.Generic;
 using PlayFab.MultiplayerAgent.Model;
 using Mirror;
-
 public class ServerStartUp : MonoBehaviour
 {
 
 	public Configuration configuration;
-
 	private List<ConnectedPlayer> _connectedPlayers;
 	public MyNetworkManager networkManager;
 
@@ -22,7 +19,7 @@ public class ServerStartUp : MonoBehaviour
 			StartRemoteServer();
 		}
 	}
-
+	
 	public void OnStartLocalServerButtonClick()
 	{
 		if (configuration.buildType == BuildType.LOCAL_SERVER)
@@ -38,7 +35,7 @@ public class ServerStartUp : MonoBehaviour
 		PlayFabMultiplayerAgentAPI.Start();
 		PlayFabMultiplayerAgentAPI.IsDebugging = configuration.playFabDebugging;
 		PlayFabMultiplayerAgentAPI.OnMaintenanceCallback += OnMaintenance;
-		PlayFabMultiplayerAgentAPI.OnShutDownCallback += OnShutdown;
+		PlayFabMultiplayerAgentAPI.OnShutDownCallback += ShutDown;
 		PlayFabMultiplayerAgentAPI.OnServerActiveCallback += OnServerActive;
 		PlayFabMultiplayerAgentAPI.OnAgentErrorCallback += OnAgentError;
 
@@ -49,7 +46,12 @@ public class ServerStartUp : MonoBehaviour
 	IEnumerator ShutdownServerInXTime()
 	{
 		yield return new WaitForSeconds(300f);
-		OnShutdown();
+		ShutDown();
+	}
+
+	private void ShutDown()
+	{
+		networkManager.ShutDown();
 	}
 
 	IEnumerator ReadyForPlayers()
@@ -62,23 +64,7 @@ public class ServerStartUp : MonoBehaviour
 	{
 		networkManager.StartServer();
 	}
-	
-	public void OnPlayerRemoved(string playfabId)
-	{
-		ConnectedPlayer player = _connectedPlayers.Find(x => x.PlayerId.Equals(playfabId, StringComparison.OrdinalIgnoreCase));
-		_connectedPlayers.Remove(player);
-		PlayFabMultiplayerAgentAPI.UpdateConnectedPlayers(_connectedPlayers);
-		CheckPlayerCountToShutdown();
-	}
 
-	private void CheckPlayerCountToShutdown()
-	{
-		if (_connectedPlayers.Count <= 0)
-		{
-			OnShutdown();
-		}
-	}
-	
 	public void OnPlayerAdded(string playfabId)
 	{
 		_connectedPlayers.Add(new ConnectedPlayer(playfabId));
@@ -88,11 +74,6 @@ public class ServerStartUp : MonoBehaviour
 	private void OnAgentError(string error)
 	{
 		Debug.Log(error);
-	}
-
-	private void OnShutdown()
-	{
-		networkManager.ShutDown();
 	}
 
 	private void OnMaintenance(DateTime? NextScheduledMaintenanceUtc)

@@ -13,21 +13,29 @@ public class Projectile : NetworkBehaviour
     [SerializeField] private AudioClip headshotDing;
     [SerializeField] private AudioClip hitPlayerSound;
     private bool _playedSmoke;
+    private bool _hit;
     
     private void Start()
     {
         Invoke(nameof(Disappear), 3f);
     }
-
+    
     void OnCollisionEnter(Collision collision)
     {
         if(!isServer) return;
+
+        if(_hit) return;
+        
+        _hit = true;
 
         bool isHeadshot = collision.gameObject.CompareTag("Head");
 
         if(!isHeadshot && !collision.gameObject.CompareTag("Body")) return;
 
         Player player = collision.gameObject.GetComponentInParent<Player>();
+
+        // DON'T ALLOW TEAM KILLING
+        if(player.team == owner.GetComponent<Player>().team) return;
 
         bool hitPlayer = player != null;
 
@@ -42,6 +50,7 @@ public class Projectile : NetworkBehaviour
         player.TakeDamage(owner, isHeadshot ? headshotDamage : damage);
 
         TargetShotPlayer(owner.connectionToClient, isHeadshot);
+
     }
 
     [TargetRpc]

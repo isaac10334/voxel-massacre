@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   genericVoxelsMaterial: {fileID: 2100000, guid: dc35c3e21db620d4fb45566a294a4262,
     type: 2}
-  transparentMaterial: {fileID: 2100000, guid: 123fbe69c7a724829a3602c0191e4004, type: 2}
+  transparentMaterial: {fileID: 0}
   resolution: 0.1
   allowUserDestruction: 0
   meshFilter: {fileID: 3204393610230573642}
@@ -1227,7 +1227,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5065844026274695545}
-  - component: {fileID: 6863014638976854818}
   m_Layer: 6
   m_Name: StoplightPrefab
   m_TagString: Untagged
@@ -1250,21 +1249,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6863014638976854818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7191871086826714029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4a718f140294633884839cce272667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Static: 0
-  Occludee: 0
-  Lod1: 100
-  Lod2: 0
-  LodMargin: 0
-  LodOnly: 0

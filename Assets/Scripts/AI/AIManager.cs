@@ -7,7 +7,6 @@ public class AIManager : MonoBehaviour
 
     public GameObject policemanLevelOne;
     public GameObject sniperMan;
-    // public GameObject superman;
     private int _currentAI;
     private int _level;
 

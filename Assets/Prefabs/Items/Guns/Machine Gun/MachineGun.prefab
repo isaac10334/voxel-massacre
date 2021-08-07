@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4441308887109033403}
+  - component: {fileID: 3902860313556165864}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -31,6 +32,18 @@ Transform:
   m_Father: {fileID: 2380126014130947525}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3902860313556165864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541802549820575190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec85c77e9a32f4b4290bea13e350b14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2178251537055041443
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  rightHandGrip: {fileID: 0}
+  leftHandGrip: {fileID: 0}
   projectileForce: 40
   particleSystem: {fileID: 5439369149486410521}
   barrel: {fileID: 4441308887109033403}
@@ -184,10 +199,10 @@ MonoBehaviour:
   shootRate: 0.1
   tweenDuration: 0.25
   fullyAutomatic: 1
-  requiresAmmo: 0
   projectile: {fileID: 4957231965799523976, guid: bce8a3220fa255746afdbdea92ef5751,
     type: 3}
   gunshotSound: {fileID: 8300000, guid: dd31936fa35f35745bdb2fa93a6b5a37, type: 3}
+  outOfAmmoSound: {fileID: 8300000, guid: 2f0f78b497edb9e40ad0e7f8b3435b4b, type: 3}
   gunHolder: {fileID: 2380126014130947525}
 --- !u!114 &6714058058914206706
 MonoBehaviour:
