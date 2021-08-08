@@ -20,7 +20,8 @@ public class PlayerMovement : NetworkBehaviour
     public bool movementStopped;
     public bool isGrounded;
     
-    [SerializeField] private SkinnedMeshRenderer meshRenderer;
+    [SerializeField] private SkinnedMeshRenderer visibleToOthersRenderer;
+    [SerializeField] private SkinnedMeshRenderer visibleToLocalPlayerRenderer;
     [SerializeField] private Animator animator;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float defaultWalkingSpeed = 6f;
@@ -65,20 +66,23 @@ public class PlayerMovement : NetworkBehaviour
 
         _rigidbody = gameObject.GetOrAddComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
-        meshRenderer.enabled = true;
-
+        
         cam.enabled = false;
         cam.GetComponent<AudioListener>().enabled = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        visibleToOthersRenderer.enabled = true;
     }
 
     public override void OnStartLocalPlayer()
     {
         cam.enabled = true;
         cam.GetComponent<AudioListener>().enabled = true;
-        meshRenderer.enabled = false;
+
+        visibleToOthersRenderer.enabled = false;
+        visibleToLocalPlayerRenderer.enabled = true;
     }
 
     public void ToggleRigidbodyMode(bool toggle, bool toggleOnGroundHit = false)

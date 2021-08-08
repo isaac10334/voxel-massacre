@@ -467,7 +467,7 @@ public class Player : NetworkBehaviour
                 }
                 else
                 {
-                    int difference = referenceItem.clipSize % item.currentClipAmmo;
+                    int difference = referenceItem.clipSize - item.currentClipAmmo;
                     item.currentClipAmmo += difference;
                     item.restOfAmmo -= difference;
                 }
