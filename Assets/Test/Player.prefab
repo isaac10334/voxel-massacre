@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8435406488067791753}
   - component: {fileID: 8435406488067791755}
   - component: {fileID: 8435406488067791754}
-  - component: {fileID: 8435406488067791764}
   - component: {fileID: 8435406488067791765}
   - component: {fileID: 8435406488067791766}
   m_Layer: 3
@@ -88,33 +87,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8435406488067791752}
   m_Enabled: 1
---- !u!114 &8435406488067791764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8435406488067791752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c623a05fc5442fcba27a128ec2559a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tags: 
-  layerMsk:
-    serializedVersion: 2
-    m_Bits: 64
-  occludeeLayer: 0
-  samples: 150
-  raysFov: 60
-  preCullCheck: 0
-  viewDistance: 1000
-  hideDelay: 50
-  realtimeShadows: 1
-  lod1Distance: 30
-  lod2Distance: 60
-  lightProbes: 0
-  probeRadius: 0
 --- !u!114 &8435406488067791765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +336,7 @@ GameObject:
   - component: {fileID: 8435406489683076312}
   - component: {fileID: 8435406489683076390}
   - component: {fileID: 8435406489683076319}
+  - component: {fileID: 1743545287997338352}
   m_Layer: 3
   m_Name: Player
   m_TagString: IgnoreGeneration
@@ -479,10 +452,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894af25c190008a478b66a59c2633866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   currentMode: 0
   cam: {fileID: 8435406488067791755}
   movementStopped: 0
   isGrounded: 1
+  visibleToOthersRenderer: {fileID: 0}
+  visibleToLocalPlayerRenderer: {fileID: 0}
+  animator: {fileID: 0}
   gravity: -18
   defaultWalkingSpeed: 7
   sprintingSpeed: 10
@@ -497,6 +475,7 @@ MonoBehaviour:
   jumpHeight: 6
   landSound: {fileID: 0}
   jumpSound: {fileID: 0}
+  itemSway: {fileID: 0}
 --- !u!114 &8435406489683076390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,11 +488,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ade0c5f7a0d8094982b534626b40bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  team: 0
+  username: 
+  isDriving: 0
+  addItemsOnStart: 1
   itemsDatabase: {fileID: 11400000, guid: 1450adb30186c144ca8e8267cd919bf3, type: 2}
   hand: {fileID: 1584648057845296863}
   maxInventorySize: 10
-  inventory: []
   raycastRange: 3
+  enemyStuff: {fileID: 0}
+  playerText: {fileID: 0}
+  kills: 0
+  killStreak: 0
+  nonLocalRightHandConstraint: {fileID: 0}
+  nonLocalLeftHandConstraint: {fileID: 0}
+  localRightHandConstraint: {fileID: 0}
+  localLeftHandConstraint: {fileID: 0}
+  onDamageShakeAmount: 0.5
+  onDamageShakeDuration: 0.25
+  blood: {fileID: 0}
+  audioSource: {fileID: 0}
+  takeDamageSound: {fileID: 0}
 --- !u!54 &8435406489683076319
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -530,3 +527,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &1743545287997338352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435406489683076318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: f92739b51ade0754abbdec8134f3c505
+  hasSpawned: 0

@@ -17,6 +17,8 @@ public class UIThings : MonoBehaviour
 
     public static UIThings Instance;
     public ReloadUI reloadUI;
+    public CombatNotifications combatNotifications;
+    public Leaderboard leaderboard;
 
     public Transform toolbarContainer;
     public GameObject toolbarSlotPrefab;
@@ -133,6 +135,15 @@ public class UIThings : MonoBehaviour
             {
                 OpenMenuAsEscapeMenu();
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            leaderboard.OpenLeaderboard();
+        }
+        if(Input.GetKeyUp(KeyCode.Tab))
+        {
+            leaderboard.CloseLeaderboard();
         }
     }
     
@@ -401,6 +412,12 @@ public class UIThings : MonoBehaviour
     {
         loadoutMenu.gameObject.SetActive(true);
     }
+
+    public void OnClientJoined(NetworkIdentity identity)
+    {
+        leaderboard.AddPlayer(identity);
+    }
+
     #endregion
     public void Quit()
     {

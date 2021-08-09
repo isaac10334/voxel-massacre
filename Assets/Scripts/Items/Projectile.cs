@@ -47,7 +47,7 @@ public class Projectile : NetworkBehaviour
 
         if(!hitPlayer) return;
 
-        player.TakeDamage(owner, isHeadshot ? headshotDamage : damage);
+        player.TakeDamage(owner, isHeadshot ? headshotDamage : damage, isHeadshot);
 
         TargetShotPlayer(owner.connectionToClient, isHeadshot);
 

@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - genericVoxelsMaterial: {fileID: 2100000, guid: dc35c3e21db620d4fb45566a294a4262,
       type: 2}
-  - transparentMaterial: {fileID: 2100000, guid: 123fbe69c7a724829a3602c0191e4004,
+  - transparentMaterial: {fileID: 2100000, guid: 1257fedd83d48064e95b34f4048a3486,
       type: 2}
   - meshFilter: {instanceID: 0}
   - rb: {instanceID: 0}

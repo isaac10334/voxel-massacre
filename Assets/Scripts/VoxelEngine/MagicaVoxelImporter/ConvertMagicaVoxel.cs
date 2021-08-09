@@ -403,15 +403,13 @@ public static class ConvertMagicaVoxel
                     newObj.transform.position = chunk.transformNode.position;
                     newObj.transform.rotation = chunk.transformNode.rotation;
 
-                    Debug.Log("Glass isn't supported in URP.");
-                    // newObj.AddComponent<CommandBufferBlurRefraction>();
-
                     glassVoxelVc = newObj.AddComponent<VoxelContainer>();
                     glassVoxelVc.SetupReferences();
                     glassVoxelVc.gameObject.GetComponent<MeshRenderer>().sharedMaterial = glassVoxelVc.transparentMaterial;
                     glassVoxelVc.Initialize(vc.Dimensions);
                     glassVoxelVc.indexInObject = vc.indexInObject + 1;
                     glassVoxelVc.SetVoxel(voxelPos, color, material);
+                    newObj.GetComponent<MeshRenderer>().material = glassVoxelVc.transparentMaterial;
                 }
                 else
                 {
@@ -491,52 +489,7 @@ public static class ConvertMagicaVoxel
         transformNode.childNodeId = childNodeId;
 
         bool hasTransform = false;
-
-        if(frameAttributes.TryGetValue("_r", out string rotation))
-        {
-            /*
-            Vector3[] k_vectors = {
-                new Vector3(1.0f, 0.0f, 0.0f),
-                new Vector3(0.0f, 1.0f, 0.0f),
-                new Vector3(0.0f, 0.0f, 1.0f),
-                new Vector3(0.0f, 0.0f, 0.0f)    // invalid!
-            };
-
-            hasTransform = true;
-
-            Debug.Log(rotation);
-
-            int[] k_row2_index = { Int32.MaxValue, Int32.MaxValue, Int32.MaxValue, 2, Int32.MaxValue, 1, 0, Int32.MaxValue };
-
-            int packed_rotation_bits = int.Parse(rotation);
-            int row0_vec_index = (packed_rotation_bits >> 0) & 3;
-            int row1_vec_index = (packed_rotation_bits >> 2) & 3;
-
-            // process of elimination to determine row 2 index based on row0/row1 being one of {0,1,2} choose 2.
-            int row2_vec_index = k_row2_index[(1 << row0_vec_index) | (1 << row1_vec_index)];    
-            
-            Vector3 row0 = k_vectors[row0_vec_index];
-            Vector3 row1 = k_vectors[row1_vec_index];
-            Vector3 row2 = k_vectors[row2_vec_index];
-
-            bool p = packed_rotation_bits == 1;
-
-            //if ((p) & (1 << 4) == 1)
-            //    row0 = NegateVector3(row0);
-            //if ((p) & (1 << 5) == 1)
-            //    row1 = NegateVector3(row1);
-            //if ((p) & (1 << 6) == 1)
-            //    row2 = NegateVector3(row2);
-
-            // magicavoxel stores rows, we need columns, so we do the swizzle here into columns
-            //float x = row0.x; transform.m01 = row1.x; transform.m02 = row2.x;
-            //float y = row0.y; transform.m11 = row1.y; transform.m12 = row2.y;
-            //float z = row0.z; transform.m21 = row1.z; transform.m22 = row2.z;
-
-            transformNode.rotation = Quaternion.Euler(x, y, z);
-            */
-        }
-        
+                
         if(frameAttributes.TryGetValue("_t", out string translation))
         {
             hasTransform = true;

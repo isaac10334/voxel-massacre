@@ -23,8 +23,17 @@ public class Player : NetworkBehaviour
     public int raycastRange;
     public GameObject enemyStuff;
     public TMP_Text playerText;
-    [SerializeField] private TwoBoneIKConstraint rightHandConstraint;
-    [SerializeField] private TwoBoneIKConstraint leftHandConstraint;
+
+
+    // leaderboard stuff
+    public int kills;
+    // current lifetime kills
+    public int killStreak;
+
+    [SerializeField] private TwoBoneIKConstraint nonLocalRightHandConstraint;
+    [SerializeField] private TwoBoneIKConstraint nonLocalLeftHandConstraint;
+    [SerializeField] private TwoBoneIKConstraint localRightHandConstraint;
+    [SerializeField] private TwoBoneIKConstraint localLeftHandConstraint;
     [SerializeField] private float onDamageShakeAmount = 0.5f;
     [SerializeField] private float onDamageShakeDuration = 0.25f;
     [SerializeField] private ParticleSystem blood;
@@ -100,6 +109,8 @@ public class Player : NetworkBehaviour
         {
             MarkPlayerAsFriendly(this);
         }
+
+        UIThings.Instance.OnClientJoined(playerIdentity);
     }
 
     private void MarkPlayerAsEnemy(Player player)
@@ -133,11 +144,6 @@ public class Player : NetworkBehaviour
     void Update()
     {
         if(!isLocalPlayer) return;
-
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            CmdTakeDamage(10);
-        }
 
         // if(isDriving) return;
 
@@ -232,13 +238,13 @@ public class Player : NetworkBehaviour
     }
 
     [Command]
-    public void CmdTakeDamage(int amount, NetworkConnectionToClient sender = null)
+    public void CmdTakeDamage(int amount, bool isHeadshot, NetworkConnectionToClient sender = null)
     {
-        TakeDamage(sender.identity, amount);
+        TakeDamage(sender.identity, amount, isHeadshot);
     }
 
     [Server]
-    public void TakeDamage(NetworkIdentity playerResponsible, int amount)
+    public void TakeDamage(NetworkIdentity playerResponsible, int amount, bool isHeadshot)
     {
         if(amount < 0) return;
 
@@ -246,7 +252,7 @@ public class Player : NetworkBehaviour
 
         if(health <= 0)
         {
-            Die(playerResponsible);
+            Die(playerResponsible, isHeadshot);
             return;
         }
         
@@ -287,11 +293,18 @@ public class Player : NetworkBehaviour
         }
     }
 
-    private void Die(NetworkIdentity playerResponsible)
+    private void Die(NetworkIdentity playerResponsible, bool headshotKill)
     {
         if(!isServer) return;
 
         GameManager.Instance.PlayerDied(this);
+
+        playerResponsible.GetComponent<Player>().ReceiveKill();
+
+        // reset killstreak
+        killStreak = 0;
+
+        TargetTellPlayerResponsible(playerResponsible.connectionToClient, headshotKill);
             
         TargetDie();
 
@@ -300,6 +313,22 @@ public class Player : NetworkBehaviour
         // consider just disabling the gameobject?
         // eh.... nothing wrong with destroying it, right? Hmm..
         // perhaps the TargetRPC doesn't have time to go through, or something? 
+    }
+
+    [Server]
+    private void ReceiveKill()
+    {
+        kills++;
+        killStreak++;
+    }
+
+    [TargetRpc]
+    private void TargetTellPlayerResponsible(NetworkConnection playerResponsible, bool headshotKill)
+    {
+        if(headshotKill)
+        {
+            UIThings.Instance.combatNotifications.HeadshotKill();
+        }
     }
 
     [ClientRpc]
@@ -341,7 +370,7 @@ public class Player : NetworkBehaviour
     {
         // client stuff
         UIThings.Instance.SelectSlot(itemSlot);
-
+        UIThings.Instance.reloadUI.DisableReloadUI();
         CmdEquip(itemSlot);
     }
 
@@ -372,19 +401,13 @@ public class Player : NetworkBehaviour
 
                 Gun gun = newItem.GetComponentInChildren<Gun>();
 
-                if(gun)
-                {
-                    // send up hand IK - hands will go to guns.
-                    leftHandConstraint.data.target = gun.leftHandGrip;
-                    rightHandConstraint.data.target = gun.rightHandGrip;
-                }
-
                 NetworkServer.Spawn(newItem, gameObject);
 
                 TargetUpdateAmmo(item);
 
                 // newItem.GetComponent<NetworkIdentity>().AssignClientAuthority
                 ClientEquip(newItem);
+                TargetEquip(newItem);
 
                 return;
             }
@@ -403,8 +426,18 @@ public class Player : NetworkBehaviour
             UIThings.Instance.reloadUI.DisableReloadUI();
         }
     }
+
+    [TargetRpc]
+    private void TargetEquip(GameObject newItem)
+    {
+        Gun gun = newItem.GetComponentInChildren<Gun>();
+        if(!gun) return;
+
+        localLeftHandConstraint.data.target = gun.leftHandGrip;
+        localRightHandConstraint.data.target = gun.rightHandGrip;
+    }
     
-    [ClientRpc]
+    [ClientRpc( includeOwner = false)]
     private void ClientEquip(GameObject newItem)
     {
         if(newItem == null) return;
@@ -412,6 +445,14 @@ public class Player : NetworkBehaviour
         newItem.transform.parent = hand;
         newItem.transform.position = hand.position;
         newItem.transform.rotation = hand.rotation;
+
+        Gun gun = newItem.GetComponentInChildren<Gun>();
+        if(!gun) return;
+
+        // send up hand IK - hands will go to guns.
+        nonLocalLeftHandConstraint.data.target = gun.leftHandGrip;
+        nonLocalRightHandConstraint.data.target = gun.rightHandGrip;
+
     }
     
     public void AddItem(string itemName)

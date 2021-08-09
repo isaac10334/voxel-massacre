@@ -16,10 +16,14 @@ public class PlayerMovement : NetworkBehaviour
     public PlayerMovementModes currentMode;
 
     public Camera cam;
-
+    public Transform cameraShake;
     public bool movementStopped;
     public bool isGrounded;
     
+    // hit ground tween
+    [SerializeField] private Vector3 hitGroundRotation;
+    [SerializeField] private float hitGroundRotationDuration;
+
     [SerializeField] private SkinnedMeshRenderer visibleToOthersRenderer;
     [SerializeField] private SkinnedMeshRenderer visibleToLocalPlayerRenderer;
     [SerializeField] private Animator animator;
@@ -41,9 +45,8 @@ public class PlayerMovement : NetworkBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip landSound;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private ItemSway itemSway;
     private float _leftGroundAt;
-
-    private bool _crouching = false;
     private CharacterController _characterController;
     private Vector2 rotation = Vector2.zero;
     private Rigidbody _rigidbody;
@@ -57,7 +60,7 @@ public class PlayerMovement : NetworkBehaviour
     private AudioSource _audioSource;
     private float _walkingSpeed;
     private float _sprintingSpeed;
-
+    private bool _wasMoving;
     public void Awake()
     {
         _audioSource = gameObject.GetOrAddComponent<AudioSource>();
@@ -74,6 +77,7 @@ public class PlayerMovement : NetworkBehaviour
         Cursor.visible = false;
 
         visibleToOthersRenderer.enabled = true;
+        visibleToLocalPlayerRenderer.enabled = false;
     }
 
     public override void OnStartLocalPlayer()
@@ -104,10 +108,24 @@ public class PlayerMovement : NetworkBehaviour
             _rigidbody.useGravity = false;
         }
     }
-    
+
+    private bool IsMoving() => Mathf.Abs(_characterController.velocity.x) > 0 ||
+            Mathf.Abs(_characterController.velocity.z) > 0;
+
     private void Update()
     {
         if(!isLocalPlayer) return;
+        
+        if(IsMoving() && !_wasMoving)
+        {
+            OnStartedMoving();
+            _wasMoving = true;
+        }
+        else if(!IsMoving() && _wasMoving)
+        {
+            OnStoppedMoving();
+            _wasMoving = false;
+        }
 
         if (currentMode == PlayerMovementModes.Rigidbody)
         {
@@ -153,11 +171,13 @@ public class PlayerMovement : NetworkBehaviour
 
     private void OnHitGround(float timeInAir)
     {
+        cam.DOShakeRotation(0.25f);
+        // cameraShake.DOLocalRotate(hitGroundRotation, hitGroundRotationDuration);
         float lengthFell = _leftGroundAt - transform.position.y;
 
         if(lengthFell > amountOfFallingThatCanCauseDamage)
         {
-            Player.Instance.CmdTakeDamage((int)(lengthFell * fallDamageMultiplier));
+            Player.Instance.CmdTakeDamage((int)(lengthFell * fallDamageMultiplier), false);
         }
 
         if(_jumpOnReturn)
@@ -225,6 +245,7 @@ public class PlayerMovement : NetworkBehaviour
 
     IEnumerator JumpTo(Vector3 endPos) 
     {
+        itemSway.OnJump();
         float duration = jumpLerpDuration; //seconds
 
         float elapsedTime = 0;
@@ -250,6 +271,16 @@ public class PlayerMovement : NetworkBehaviour
        //    yield return 0;
        //}
         _jumping = false;
+    }
+
+    private void OnStartedMoving()
+    {
+        itemSway.OnStartedMoving();
+    }
+
+    private void OnStoppedMoving()
+    {
+        itemSway.OnStoppedMoving();
     }
 
     private async void BufferJumpForFrames(int frames)

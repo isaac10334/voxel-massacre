@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Gun,
-    Other
+    Other,
+    Gun
 }
 
 [System.Serializable]

@@ -61,7 +61,7 @@ public class GameManager : NetworkBehaviour
 
         if(_timer <= 0) GameOver();
     }
-
+    
     [ClientRpc]
     private void ClientUpdateTimer(float time)
     {

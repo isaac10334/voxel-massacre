@@ -161,9 +161,9 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 0
   - serializedVersion: 2
-    rgba: 4279505940
+    rgba: 4278453252
   - serializedVersion: 2
-    rgba: 4279308561
+    rgba: 4278190080
   - serializedVersion: 2
     rgba: 4283321934
   - serializedVersion: 2
@@ -1371,9 +1371,9 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 0
   - serializedVersion: 2
-    rgba: 4279308561
+    rgba: 4278190080
   - serializedVersion: 2
-    rgba: 4279505940
+    rgba: 4278453252
   - serializedVersion: 2
     rgba: 4283124555
   - serializedVersion: 2
@@ -2545,9 +2545,9 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 0
   - serializedVersion: 2
-    rgba: 4279505940
+    rgba: 4278453252
   - serializedVersion: 2
-    rgba: 4279308561
+    rgba: 4278190080
   - serializedVersion: 2
     rgba: 4283321934
   - serializedVersion: 2
@@ -3719,9 +3719,9 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 0
   - serializedVersion: 2
-    rgba: 4279308561
+    rgba: 4278190080
   - serializedVersion: 2
-    rgba: 4279505940
+    rgba: 4278453252
   - serializedVersion: 2
     rgba: 4283321934
   - serializedVersion: 2
@@ -4893,11 +4893,11 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 0
   - serializedVersion: 2
-    rgba: 4279308561
+    rgba: 4278190080
   - serializedVersion: 2
     rgba: 4283321934
   - serializedVersion: 2
-    rgba: 4279505940
+    rgba: 4278453252
   - serializedVersion: 2
     rgba: 4283124555
   - serializedVersion: 2

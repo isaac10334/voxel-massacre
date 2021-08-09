@@ -259,12 +259,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  rightHandGrip: {fileID: 0}
-  leftHandGrip: {fileID: 0}
+  rightHandGrip: {fileID: 5653992594196176465}
+  leftHandGrip: {fileID: 8308500528159789504}
   projectileForce: 60
   particleSystem: {fileID: 5617186320158587639}
   barrel: {fileID: 481725590895691275}
-  ammoItem: 
   aimDownSightPos: {x: 0.89, y: -0.74, z: 2.32}
   aimDownSightRot: {x: 0, y: 90, z: 0}
   shootRate: 0.15
