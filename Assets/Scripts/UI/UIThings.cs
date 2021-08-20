@@ -14,8 +14,9 @@ public class UIThings : MonoBehaviour
         MainMenu,
         EscapeMenu
     }
-
+    
     public static UIThings Instance;
+    public SettingsMenu settingsMenu;
     public ReloadUI reloadUI;
     public CombatNotifications combatNotifications;
     public Leaderboard leaderboard;
@@ -24,6 +25,7 @@ public class UIThings : MonoBehaviour
     public GameObject toolbarSlotPrefab;
     public GameOverScreen gameOverScreen;
     public Slider healthSlider;
+    [SerializeField] private TMP_Text menuText;
     [SerializeField] private TMP_Text interactionText;
     [SerializeField] private TMP_Text notificationText;
     [SerializeField] private GameObject gameUI;
@@ -273,8 +275,10 @@ public class UIThings : MonoBehaviour
     {
         if(NetworkClient.connection == null) return;
 
+        menuText.text = "Click to Resume";
         menuCamera.SetActive(false);
         menu.SetActive(true);
+        gameUI.SetActive(false);
     
         Pause();
 
@@ -285,6 +289,8 @@ public class UIThings : MonoBehaviour
     {
         if(NetworkClient.connection == null) return;
         if(NetworkClient.localPlayer == null) return;
+
+        CloseMenu();
 
         menu.SetActive(false);
         Cursor.visible = false;
@@ -298,6 +304,7 @@ public class UIThings : MonoBehaviour
     {
         UnlockCursor();
 
+        menuText.text = "Click to Play";
         menuCamera.SetActive(true);
         menu.SetActive(true);
         gameUI.SetActive(false);

@@ -7,10 +7,9 @@ using Mirror;
 [RequireComponent(typeof(AudioSource))]
 public class Gun : NetworkBehaviour
 {
-
     public Transform rightHandGrip;
     public Transform leftHandGrip;
-
+    public Transform pivot;
     [SerializeField] private float projectileForce = 40f;
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private Transform barrel;
@@ -23,6 +22,8 @@ public class Gun : NetworkBehaviour
     [SerializeField] private AudioClip gunshotSound;
     [SerializeField] private AudioClip outOfAmmoSound;
     [SerializeField] private Transform gunHolder;
+    [SerializeField] private Vector3 recoilRotation;
+    [SerializeField] private float recoilRotationDuration;
     private float timer = 0f;
     private AudioSource audioSource;
     private Vector3 _originalPosition;
@@ -103,8 +104,8 @@ public class Gun : NetworkBehaviour
         {
             audioSource.PlayOneShot(gunshotSound);
             particleSystem.Play();
-            gunHolder.DOPunchRotation(new Vector3(1, 0, -5), 0.1f, 10, 1);
-
+            pivot.DOPunchRotation(recoilRotation, recoilRotationDuration, 1, 1);
+            
             CmdFire();
         }
         else

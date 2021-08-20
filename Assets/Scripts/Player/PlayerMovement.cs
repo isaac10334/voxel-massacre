@@ -12,7 +12,7 @@ public class PlayerMovement : NetworkBehaviour
         CharacterController,
         Rigidbody
     }
-
+    
     public PlayerMovementModes currentMode;
 
     public Camera cam;
@@ -21,6 +21,11 @@ public class PlayerMovement : NetworkBehaviour
     public bool isGrounded;
     
     // hit ground tween
+    [SerializeField] private float groundAcceleration;
+    [SerializeField] private float maximumGroundVelocity;
+    [SerializeField] private float airAcceleration;
+    [SerializeField] private float maximumAirVelocity;
+
     [SerializeField] private Vector3 hitGroundRotation;
     [SerializeField] private float hitGroundRotationDuration;
 
@@ -32,7 +37,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float sprintingSpeed = 8f;
     [SerializeField] private float inAirSubtraction = 2f;
 
-    [SerializeField] private float lookSpeed = 3;
+    [SerializeField] private float mouseSensitivity = 3;
     [SerializeField] private float distanceToGround = 0.3f;
     [Header("Falling")]
     [SerializeField] private float minimumTimeInAirRequiredToPayLandingSound = 0.2f;
@@ -40,7 +45,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float fallDamageMultiplier = 1f;
     [Header("Jumping")]
     [SerializeField] private int _jumpBuffering = 2;
-    [SerializeField] private float jumpLerpDuration = 0.5f;
+    [SerializeField] private float jumpLerpDuration = 1f;
     [SerializeField]  private float jumpHeight = 2f;
     [Header("Audio")]
     [SerializeField] private AudioClip landSound;
@@ -55,12 +60,12 @@ public class PlayerMovement : NetworkBehaviour
     private float _currentlyInAirTime;
     private bool _currentlyInAir;
     private bool _jumpOnReturn;
-    private bool _jumping;
-    private Vector3 _direction;
+    private bool _isJumping;
+    public Vector3 _direction;
     private AudioSource _audioSource;
-    private float _walkingSpeed;
-    private float _sprintingSpeed;
     private bool _wasMoving;
+    private float _elapsedTime = 0f;
+    private float _ratio = 0f;
     public void Awake()
     {
         _audioSource = gameObject.GetOrAddComponent<AudioSource>();
@@ -78,6 +83,16 @@ public class PlayerMovement : NetworkBehaviour
 
         visibleToOthersRenderer.enabled = true;
         visibleToLocalPlayerRenderer.enabled = false;
+    }
+
+    private void Start()
+    {
+        UIThings.Instance.settingsMenu.SubscribeToSettingsUpdate(OnSettingsUpdate);
+    }
+
+    private void OnSettingsUpdate(Settings settings)
+    {
+        mouseSensitivity = settings.mouseSensitivity;
     }
 
     public override void OnStartLocalPlayer()
@@ -118,7 +133,10 @@ public class PlayerMovement : NetworkBehaviour
         
         if(IsMoving() && !_wasMoving)
         {
-            OnStartedMoving();
+            if(!_isJumping)
+            {
+                OnStartedMoving();
+            }
             _wasMoving = true;
         }
         else if(!IsMoving() && _wasMoving)
@@ -169,10 +187,14 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    private void OnHitGround(float timeInAir)
+    private async void OnHitGround(float timeInAir)
     {
-        cam.DOShakeRotation(0.25f);
-        // cameraShake.DOLocalRotate(hitGroundRotation, hitGroundRotationDuration);
+        _isJumping = false;
+        _elapsedTime = 0;
+        _ratio = _elapsedTime / jumpLerpDuration;
+
+        Debug.Log("Hit ground.");
+
         float lengthFell = _leftGroundAt - transform.position.y;
 
         if(lengthFell > amountOfFallingThatCanCauseDamage)
@@ -182,25 +204,26 @@ public class PlayerMovement : NetworkBehaviour
 
         if(_jumpOnReturn)
         {
-            StartCoroutine(JumpTo(new Vector3(0, jumpHeight, 0)) );
+            Jump();
             _jumpOnReturn = false;
         }
         else
         {
             if(timeInAir > minimumTimeInAirRequiredToPayLandingSound)
                 _audioSource.PlayOneShot(landSound);
+
+            await cameraShake.DOShakeRotation(0.25f, 2f).AsyncWaitForCompletion();
         }
 
         _currentlyInAirTime = 0f;
     }
 
+    private Vector3 prevVelocity;
+    [SerializeField] private float friction = 10f;
+
     private void UpdateForCharacterController()
     {
         CheckGroundedStuff();
-        HandleJumping();
-
-        Vector3 moveDirectionForward = Vector3.zero;
-        Vector3 moveDirectionSide = Vector3.zero;
 
         float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
@@ -208,6 +231,42 @@ public class PlayerMovement : NetworkBehaviour
         animator.SetFloat("Vertical", vertical);
         animator.SetFloat("Horizontal", horizontal);
 
+        Vector3 inputVector = GetInputVector(vertical, horizontal);
+
+        if(isGrounded)
+        {
+            inputVector = ApplySprinting(inputVector);
+            _direction = MoveOnGround(inputVector, _direction);
+        }
+        else
+        {
+            _direction = MoveInAir(inputVector, _direction);
+        }
+
+        HandleJumping();
+        
+        _direction.y += gravity * Time.deltaTime;
+        
+        _characterController.Move(_direction);
+    }
+
+    private Vector3 ApplySprinting(Vector3 inputVector)
+    {
+        float multiplier = (Input.GetKey(KeyCode.LeftShift) ? sprintingSpeed : 1);
+        inputVector.x *= multiplier;
+        inputVector.z *= multiplier;
+
+        return inputVector;
+    }
+
+    private Vector3 GetInputVector(float vertical, float horizontal)
+    {
+        // So, the problem is that if you're in the air and you're moving, mouse input isn't applied to anything.
+        // That's because this is just the movement input vector, which should be influenced by mouselook - but you can't have mouse input here because then you could move the mouse to walk around, makes no sense - so how do I have that mouse look air control I want?
+        // Hmm... I think that it's not related to the input vector at all. But, I'll need to test - first get jump working
+
+        Vector3 moveDirectionForward = Vector3.zero;
+        Vector3 moveDirectionSide = Vector3.zero;
 
         if(!movementStopped && PlayerInput.InputEnabled)
         {
@@ -215,16 +274,40 @@ public class PlayerMovement : NetworkBehaviour
             moveDirectionSide = (transform.right * horizontal) * defaultWalkingSpeed;
         }
 
-        Vector3 inputDirection = (moveDirectionForward + moveDirectionSide).normalized;
-        _walkingSpeed = isGrounded ? (defaultWalkingSpeed) : (defaultWalkingSpeed - inAirSubtraction);
-        _sprintingSpeed = isGrounded ? (sprintingSpeed) : (sprintingSpeed - inAirSubtraction);
+        Vector3 input = (moveDirectionForward + moveDirectionSide).normalized;
+        return input;
+    }
 
-        _direction.x = inputDirection.x * (Input.GetKey(KeyCode.LeftShift) ? _sprintingSpeed : _walkingSpeed);
-        _direction.z = inputDirection.z * (Input.GetKey(KeyCode.LeftShift) ? _sprintingSpeed : _walkingSpeed);
-        
+    private Vector3 MoveOnGround(Vector3 inputVector, Vector3 previousVelocity)
+    {
+        float speed = prevVelocity.magnitude;
 
-        _direction.y += gravity * Time.deltaTime;
-        _characterController.Move(_direction * Time.deltaTime);
+        if (speed != 0) // To avoid divide by zero errors
+        {
+            float drop = speed * friction * Time.deltaTime;
+            prevVelocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
+        }
+
+        // ground_accelerate and max_velocity_ground are server-defined movement variables
+        return Accelerate(inputVector, prevVelocity, groundAcceleration, maximumGroundVelocity);
+    }
+
+    private Vector3 MoveInAir(Vector3 inputVector, Vector3 previousVelocity)
+    {
+        // air_accelerate and max_velocity_air are server-defined movement variables
+        return Accelerate(inputVector, prevVelocity, airAcceleration, maximumAirVelocity);
+    }
+
+    private Vector3 Accelerate(Vector3 inputVector, Vector3 prevVelocity, float accelerate, float max_velocity)
+    {
+        float projVel = Vector3.Dot(prevVelocity, inputVector); // Vector projection of Current velocity onto accelDir.
+        float accelVel = accelerate * Time.deltaTime; // Accelerated velocity in direction of movment
+
+        // If necessary, truncate the accelerated velocity so the vector projection does not exceed max_velocity
+        if(projVel + accelVel > max_velocity)
+            accelVel = max_velocity - projVel;
+
+        return prevVelocity + inputVector * accelVel;
     }
 
     private void HandleJumping()
@@ -233,44 +316,32 @@ public class PlayerMovement : NetworkBehaviour
         {
             if(_characterController.isGrounded)
             {
-                StartCoroutine(JumpTo(new Vector3(0, jumpHeight, 0)) );
-                //StartCoroutine(JumpTo(new Vector3(transform.position.x, jumpHeight, transform.position.z)) );
+                Jump();
             }
             else
             {
                 BufferJumpForFrames(_jumpBuffering);
             }
         }
+
+        if(_isJumping && _ratio < 1f)
+        {
+            _elapsedTime += Time.deltaTime;
+            _ratio = _elapsedTime / jumpLerpDuration;
+            _direction.y = Mathf.Slerp(_direction.y, jumpHeight, _ratio);
+        }
     }
 
-    IEnumerator JumpTo(Vector3 endPos) 
+    private void Jump() 
     {
+        Debug.Log("Jumping");
+
         itemSway.OnJump();
-        float duration = jumpLerpDuration; //seconds
 
-        float elapsedTime = 0;
-        float ratio = elapsedTime / duration;
-
-        _jumping = true;
+        _isJumping = true;
 
         _leftGroundAt = transform.position.y;
-
         _audioSource.PlayOneShot(jumpSound);
-
-        while(ratio < 1f)
-        {
-            elapsedTime += Time.deltaTime;
-            ratio = elapsedTime / duration;
-            _direction = Vector3.Lerp(_direction, endPos, ratio);
-            yield return null;
-        }
-
-       //for (float t = 0f; t < duration; t += Time.deltaTime) 
-       //{
-       //    _direction = Vector3.Lerp(_direction, endPos, t / duration);
-       //    yield return 0;
-       //}
-        _jumping = false;
     }
 
     private void OnStartedMoving()
@@ -300,9 +371,12 @@ public class PlayerMovement : NetworkBehaviour
     {
         rotation.y += Input.GetAxis("Mouse X");
         rotation.x += -Input.GetAxis("Mouse Y");
-        rotation.x = Mathf.Clamp(rotation.x, -30f, 30f);
-        transform.eulerAngles = new Vector2(0, rotation.y) * lookSpeed;
-        cam.transform.localRotation = Quaternion.Euler(rotation.x * lookSpeed, 0, 0);
+
+        rotation.x = Mathf.Clamp(rotation.x, -85f / mouseSensitivity, 90f / mouseSensitivity);
+
+        transform.eulerAngles = new Vector2(0, rotation.y) * mouseSensitivity;
+
+        cam.transform.localRotation = Quaternion.Euler(rotation.x * mouseSensitivity, 0, 0);
     }
 
     public void ShakeCamera(float amount, float duration)

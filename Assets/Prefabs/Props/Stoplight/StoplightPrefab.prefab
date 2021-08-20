@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ccae35a95ed7544b79e2926fa43022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 15
+  interval: 5
   green: {fileID: 4707531060455832529}
   yellow: {fileID: 3066549603835525888}
   red: {fileID: 349783899692597983}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ccae35a95ed7544b79e2926fa43022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 15
+  interval: 5
   green: {fileID: 3518521012331611621}
   yellow: {fileID: 4358907646539488062}
   red: {fileID: 386002988741072947}

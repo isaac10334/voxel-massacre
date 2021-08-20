@@ -1,0 +1,336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2657515336268443527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7810110995790106683}
+  m_Layer: 6
+  m_Name: StoplightIntersection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7810110995790106683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657515336268443527}
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.099999905, y: 0.3999939, z: -50.100002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5779535477963354049}
+  - {fileID: 5779535478048720285}
+  - {fileID: 5779535478496784515}
+  - {fileID: 5779535477239185678}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1619174530291771064
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7810110995790106683}
+    m_Modifications:
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.4100034
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071072
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071064
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191871086826714029, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_Name
+      value: StoplightPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59628913d23e4e643ac105159dfc2bb5, type: 3}
+--- !u!4 &5779535477963354049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1619174530291771064}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1619174530343750884
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7810110995790106683}
+    m_Modifications:
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5899966
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.7499998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191871086826714029, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_Name
+      value: StoplightPrefab (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59628913d23e4e643ac105159dfc2bb5, type: 3}
+--- !u!4 &5779535478048720285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1619174530343750884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1619174530825206266
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7810110995790106683}
+    m_Modifications:
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.6799963
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.2700002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071062
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071074
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191871086826714029, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_Name
+      value: StoplightPrefab (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59628913d23e4e643ac105159dfc2bb5, type: 3}
+--- !u!4 &5779535478496784515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1619174530825206266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1619174531681699959
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7810110995790106683}
+    m_Modifications:
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.1000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.7099996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000032782552
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191871086826714029, guid: 59628913d23e4e643ac105159dfc2bb5,
+        type: 3}
+      propertyPath: m_Name
+      value: StoplightPrefab (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59628913d23e4e643ac105159dfc2bb5, type: 3}
+--- !u!4 &5779535477239185678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5065844026274695545, guid: 59628913d23e4e643ac105159dfc2bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1619174531681699959}
+  m_PrefabAsset: {fileID: 0}

@@ -15,18 +15,18 @@ public class GameOverScreen : MonoBehaviour
     public void PlayerWon(Team playerTeam)
     {
         OpenGameOverScreen();
-        audioSource.PlayOneShot(winningSound);
+        // audioSource.PlayOneShot(winningSound);
         resultText.text = "SUCCESS";
     }
     public void PlayerLost(Team playerTeam)
     {
         OpenGameOverScreen();
-        audioSource.PlayOneShot(losingSound);
+        // audioSource.PlayOneShot(losingSound);
         resultText.text = "FAILURE";
     }
     public void Tie()
     {
-        audioSource.PlayOneShot(tieSound);
+        // audioSource.PlayOneShot(tieSound);
         OpenGameOverScreen();
         resultText.text = "TIE";
     }

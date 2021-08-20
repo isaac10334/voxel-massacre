@@ -19,8 +19,13 @@ public class Projectile : NetworkBehaviour
     {
         Invoke(nameof(Disappear), 3f);
     }
-    
+
     void OnCollisionEnter(Collision collision)
+    {
+        OnTriggerEnter(collision.collider);
+    }
+    
+    void OnTriggerEnter(Collider collision)
     {
         if(!isServer) return;
 

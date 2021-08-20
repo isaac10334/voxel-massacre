@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Mirror;
-using UnityEngine.Animations.Rigging;
+using DG.Tweening;
 
 public class Player : NetworkBehaviour
 {
@@ -30,10 +30,8 @@ public class Player : NetworkBehaviour
     // current lifetime kills
     public int killStreak;
 
-    [SerializeField] private TwoBoneIKConstraint nonLocalRightHandConstraint;
-    [SerializeField] private TwoBoneIKConstraint nonLocalLeftHandConstraint;
-    [SerializeField] private TwoBoneIKConstraint localRightHandConstraint;
-    [SerializeField] private TwoBoneIKConstraint localLeftHandConstraint;
+    [SerializeField] private ItemSway itemSway;
+    [SerializeField] private Transform localLeftHandTarget, localRightHandTarget, nonLocalLeftHandTarget, nonLocalRightHandTarget;
     [SerializeField] private float onDamageShakeAmount = 0.5f;
     [SerializeField] private float onDamageShakeDuration = 0.25f;
     [SerializeField] private ParticleSystem blood;
@@ -47,6 +45,10 @@ public class Player : NetworkBehaviour
     private RaycastHit _hit;
     private PlayerMovement _playerMovement;
     [SyncVar] private int _currentlyEquippedSlot;
+    [SerializeField] private float handSpeed;
+    private Transform _leftTarget;
+    private Transform _rightTarget;
+
 
     private void Awake()
     {
@@ -145,7 +147,18 @@ public class Player : NetworkBehaviour
     {
         if(!isLocalPlayer) return;
 
-        // if(isDriving) return;
+        if(_leftTarget != null)
+        {
+            localLeftHandTarget.transform.position = 
+                Vector3.MoveTowards(localLeftHandTarget.transform.position, _leftTarget.position, handSpeed * Time.deltaTime);
+        }
+
+        if(_rightTarget != null)
+        {
+            localRightHandTarget.transform.position =
+                Vector3.MoveTowards(localRightHandTarget.transform.position, _rightTarget.position, handSpeed * Time.deltaTime);
+        }
+
 
         if(!PlayerInput.InputEnabled) return;
         
@@ -430,11 +443,23 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetEquip(GameObject newItem)
     {
+        if(newItem == null) return;
+
+        newItem.transform.parent = hand;
+        newItem.transform.position = hand.position;
+        newItem.transform.rotation = hand.rotation;
+
         Gun gun = newItem.GetComponentInChildren<Gun>();
         if(!gun) return;
+        
+        itemSway.SetTarget(gun.pivot);
 
-        localLeftHandConstraint.data.target = gun.leftHandGrip;
-        localRightHandConstraint.data.target = gun.rightHandGrip;
+        _leftTarget = gun.leftHandGrip;
+        _rightTarget = gun.rightHandGrip;
+
+        // note - could tween or lerp or something.
+        // localLeftHandTarget.position = gun.leftHandGrip.position;
+        // localRightHandTarget.position = gun.rightHandGrip.position;
     }
     
     [ClientRpc( includeOwner = false)]
@@ -449,9 +474,9 @@ public class Player : NetworkBehaviour
         Gun gun = newItem.GetComponentInChildren<Gun>();
         if(!gun) return;
 
-        // send up hand IK - hands will go to guns.
-        nonLocalLeftHandConstraint.data.target = gun.leftHandGrip;
-        nonLocalRightHandConstraint.data.target = gun.rightHandGrip;
+        // note - could tween or lerp or something.
+        nonLocalLeftHandTarget.position = gun.leftHandGrip.position;
+        nonLocalRightHandTarget.position = gun.rightHandGrip.position;
 
     }
     
@@ -483,6 +508,7 @@ public class Player : NetworkBehaviour
     }
 
     #region Reloading
+    [Command]
     public void CmdReload()
     {
         for(int i = 0; i < inventory.Count; i++)
@@ -536,6 +562,7 @@ public class Player : NetworkBehaviour
         return false;
     }
 
+    [Command]
     public void CmdUseAmmo()
     {
         for(int i = 0; i < inventory.Count; i++)

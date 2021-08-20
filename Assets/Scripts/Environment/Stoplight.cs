@@ -6,7 +6,7 @@ public class Stoplight : MonoBehaviour
 {
 
     private enum Lights  { Green, Yellow, Red };
-    private Lights lightActive;
+    private Lights lightActive = Lights.Green;
 
     [SerializeField] private float interval;
     [SerializeField] private GameObject green;
@@ -26,6 +26,8 @@ public class Stoplight : MonoBehaviour
                 green.SetActive(false);
                 red.SetActive(false);
                 yellow.SetActive(true);
+
+                lightActive = Lights.Yellow;
             }
             else if(lightActive == Lights.Yellow)
             {
@@ -38,6 +40,7 @@ public class Stoplight : MonoBehaviour
                 green.SetActive(true);
                 yellow.SetActive(false);
                 red.SetActive(false);
+                lightActive = Lights.Green;
             }
         }
     }
